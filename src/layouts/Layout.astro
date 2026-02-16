@@ -1,23 +1,57 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Agencia de Aduanas, Importación y Exportación en el Callao - Aurum Customs SAC</title>
+		<meta name="description" content="Aurum Customs SAC, Agencia de aduanas en el Callao, especializada en agenciamiento de aduanas, asesoría y consultoría en comercio exterior, con servicios complementarios para importación y exportación seguras.">
+		<meta name="keywords" content="agencia, aduanas, callao, perú, importación, exportación, despacho, aduanero, aurum, customs">
+		<meta name="author" content="Aurum Customs SAC">
+		<meta name="robots" content="index, follow">
+
+
+		<!-- 📱 Open Graph (para Facebook, LinkedIn y WhatsApp) -->
+		 <meta property="og:site_name" content="Aurum Customs SAC">
+		<meta property="og:title" content="Agencia de Aduanas, Importación y Exportación en el Callao - Aurum Customs SAC">
+		<meta property="og:description" content="Aurum Customs SAC, Agencia de aduanas en el Callao, especializada en agenciamiento de aduanas, asesoría y consultoría en comercio exterior, con servicios complementarios para importación y exportación seguras.">
+		<meta property="og:image" content="/images/og-image.jpg"> 
+		<meta property="og:url" content="https://aurumcustoms.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:locale" content="es_PE">
+
+		<meta name="theme-color" content="#0f172a">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+		<link rel="canonical" href="https://aurumcustoms.com/">
+
+
+		<script type="application/ld+json">
+			{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Aurum Customs SAC",
+			"url": "https://aurumcustoms.com/",
+			"logo": "https://aurumcustoms.com/logo.png",
+			"image": "https://aurumcustoms.com/logo.png",
+			"description": "Agencia de aduanas en el Callao especializada en importación y exportación.",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Callao",
+				"addressCountry": "PE"
+			}
+			}
+			</script>
+
+	
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
