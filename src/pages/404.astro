@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Imagen404 from "../assets/images/imagen-404.png"
+import { Image } from "astro:assets";
+---
+
+<Layout>
+    <div class="w-full min-h-screen  flex flex-col items-center justify-center font-Urbanist">
+        
+       <Image src={Imagen404}  alt="Imagen 404"
+       class="w-72 h-auto rounded-full"/>
+       <h1 class="text-48px font-black text-negro">Error 404</h1>
+       <p class="text-gris text-18px mt-3">Navegaste mal :(</p>
+       <a href="/" class="bg-acento px-7 py-3 rounded-2xl mt-5 font-semibold  transition-transform hover:bg-secundario hover:text-blanco  hover:rounded-full duration-300 ease-in-out">Página principal</a>
+    </div>
+</Layout>

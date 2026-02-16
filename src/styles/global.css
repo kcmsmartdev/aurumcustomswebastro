@@ -1,1 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
+
+
+@theme{
+
+    --font-Urbanist: 'Urbanist', sans-serif;
+
+
+    --text-14px: 0.875rem;
+    --text-16px: 1rem;
+    --text-18px: 1.125rem;
+    --text-24px: 1.5rem;
+    --text-26px: 1.625rem;
+    --text-28px: 1.75rem;
+    --text-32px: 2rem;
+    --text-36px: 2.25rem;
+    --text-40px: 2.5rem;
+    --text-48px: 3rem;
+    --text-58px: 3.625rem;
+
+
+    --color-primario: #2ABAFF;
+    --color-secundario: #046D8C;
+    --color-blanco: #FFFFFF;
+    --color-negro: #000000;
+    --color-acento: #B2E6FF;
+    --color-verde: #066810;
+    --color-gris: #4F4F4F;
+    --color-blancoTexto: #DFDFDF;
+    --color-grisClaro: #F5F5F5;
+}
+
+:root{
+    --color-primario: #2ABAFF;
+    --color-secundario: #046D8C;
+    --color-blanco: #FFFFFF;
+    --color-negro: #000000;
+    --color-acento: #B2E6FF;
+    --color-verde: #066810;
+    --color-gris: #4F4F4F;
+    --color-blancoTexto: #DFDFDF;
+    --color-grisClaro: #F5F5F5;
+    
+    
+}

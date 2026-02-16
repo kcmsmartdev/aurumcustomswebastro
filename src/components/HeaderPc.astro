@@ -1,0 +1,95 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from "astro:assets";
+import Logo from "../assets/images/logo-pc.svg"
+
+const currenPath = Astro.url.pathname;
+
+interface menu {
+    nombre: string,
+    href: string
+    children?: submenu[];
+}
+
+interface submenu{
+    nombre: string,
+    href: string,
+}
+
+const menuItems: menu[] = [
+    {nombre:"Inicio", href:"/", },
+    {nombre:"Nosotros", href:"/sobre-nosotros", },
+    {nombre:"Servicios", href:"/servicios/agenciamiento-de-aduanas-especializado",
+        children:[
+            {nombre: "Agenciamiento de aduanas especializado" , href:"/servicios/agenciamiento-de-aduanas-especializado"},
+            {nombre: "Especializado Asesoría y Consultoría en Comercio Exterior" , href:"/servicios/especializado-asesoria-y-consultoria-en-comercio-exterior"},
+            {nombre: "Servicios complementarios a su disposición" , href:"/servicios/servicios-complementarios-a-su-disposicion"},
+        ]
+     },
+
+     {nombre:"Contáctanos", href:"/contactanos", },
+]
+---
+<header class="w-full p-4 font-Urbanist  bg-grisClaro fixed z-50">
+    <nav class="w-full max-w-6xl  mx-auto flex flex-row justify-between items-center">
+        <a href="/">
+            <Image src={Logo}  alt="Logo Aurm Customs Sac"
+            class="w-40 h-auto" />
+        </a>
+
+        <div class="flex justify-between items-center space-x-16">
+            <ul class="flex justify-between items-center space-x-16 text-secundario font-semibold text-16px">
+            {
+               menuItems.map((items, Index)=>{
+
+                const esActivo = items.href === currenPath ||
+                (items.children && items.children.some(sub => sub.href ==currenPath))
+
+                return(
+                    <li class="relative cursor-pointer group">
+                        <a href={items.href}
+                        class={`${esActivo ? "text-secundario"  : "text-negro" }`}>
+
+                            {items.nombre}
+
+                        </a>
+
+                        {items.children && (
+                            <ul class={`absolute top-full left-0 mt-3 w-72
+                                bg-grisClaro  rounded-xl p-5 space-y-3
+                                border  
+                                opacity-0 invisible
+                                group-hover:opacity-100 group-hover:visible
+                                transition-all duration-300 ease-out`}>
+                                {
+                                    items.children.map((sub)=>{
+
+                                        return(
+
+                                        <li class=" transition-transform hover:scale-105 duration-300 hover:font-bold">
+                                            <a href={sub.href}>
+
+                                                {sub.nombre}
+                                            </a>
+                                        </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+
+                        )}
+                    </li>
+                )
+               })
+            }
+            </ul>
+           
+            <a href="/tracking" class="group flex bg-acento px-7 py-3 rounded-2xl font-semibold  gap-1 hover:bg-secundario hover:text-white hover:rounded-full transition-colors duration-300 ease-in-out"> 
+                <Icon name="flowbite:tracking-solid" class="size-6 group-hover:scale-105 transition-transform duration-300 ease-in-out"/> 
+                
+                Tracking
+            </a>
+            
+        </div>
+    </nav>
+</header>

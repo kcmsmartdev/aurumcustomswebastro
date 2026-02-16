@@ -1,0 +1,117 @@
+---
+
+---
+
+<form id="contactForm" method="POST"  class="w-full  flex flex-col gap-5 font-Urbanist font-medium text-negro">
+            
+            
+            <div class="flex flex-col gap-1">
+              <label for="nombre">
+                 Nombre completo
+              </label>
+              <input type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Ingresa tu nombre"
+              required
+              class="w-full px-4 py-3 border border-negroClaro rounded-xl focus:outline-none focus:ring-2 focus:ring-acento">
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="correo">
+                 Correo electrónico
+              </label>
+              <input type="email"
+              id="correo"
+              name="email"
+              placeholder="correo@ejemplo.com"
+              required
+              class="w-full px-4 py-3 border border-negroClaro rounded-xl focus:outline-none focus:ring-2 focus:ring-acento">
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="telefono">
+                 Teléfono
+              </label>
+              <input type="tel"
+              id="telefono"
+              name="telefono"
+              placeholder="+51 999 999 999"
+              required
+              class="w-full px-4 py-3 border border-negroClaro rounded-xl focus:outline-none focus:ring-2 focus:ring-acento">
+            </div>
+
+
+            <div class="flex flex-col gap-1">
+              <label for="mensaje">
+                 Mensaje
+              </label>
+              <textarea 
+                id="mensaje"
+                name="mensaje"
+                
+                placeholder="Escribe tu mensaje aquí"
+                required
+                class="w-full min-h-35 px-4 py-3 border border-gris rounded-xl 
+                        text-16px leading-normal resize-none
+                        focus:ring-2 focus:ring-acento"></textarea>
+
+
+            </div>
+
+         
+
+            
+              <label class="flex items-center gap-2 text-sm mt-2">
+              <input type="checkbox" required />
+              He leído y acepto la <a href="/politica-de-privacidad-de-datos" class="text-negro font-bold hover:text-primario">política de protección de datos personales</a>
+            </label>
+              <button
+              id="btnEnviar"
+              type="submit"
+              class="bg-secundario text-blanco font-bold py-4 rounded-2xl hover:bg-acento hover:text-negro cursor-pointer transition-colors duration-300 ease-out"
+            >
+              Enviar mensaje
+            </button>
+
+</form>
+
+<script is:inline>
+  const form = document.getElementById("contactForm");
+  const button = document.getElementById("btnEnviar");
+  
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    button.textContent = "Enviando...";
+    button.disabled = true;
+    button.className = "bg-gray-400 text-white py-4 rounded-2xl";
+
+    try {
+      const res = await fetch("/enviar-contacto.php", {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        button.textContent = "Mensaje enviado ✓";
+        button.className = "bg-green-600 text-white py-4 rounded-2xl";
+        form.reset();
+      } else {
+        throw new Error();
+      }
+
+    } catch {
+      button.textContent = "Error al enviar ✕";
+      button.className = "bg-red-600 text-white py-4 rounded-2xl";
+    }
+
+    setTimeout(() => {
+      button.textContent = "Enviar mensaje";
+      button.disabled = false;
+      button.className = "bg-primario text-negro py-4 rounded-2xl";
+    }, 3000);
+  });
+</script>
