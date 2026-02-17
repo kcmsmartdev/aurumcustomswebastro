@@ -1,21 +1,179 @@
 ---
-import { Image } from 'astro:assets';
-import Logo from "../assets/images/logo-movil.svg";
-const props = Astro.props
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import Logo from "../assets/images/logo-pc.svg";
+
+const currenPath = Astro.url.pathname;
+
+interface menu {
+  nombre: string;
+  href: string;
+  children?: submenu[];
+}
+
+interface submenu {
+  nombre: string;
+  href: string;
+}
+
+const menuItems: menu[] = [
+  { nombre: "Inicio", href: "/" },
+  { nombre: "Nosotros", href: "/sobre-nosotros" },
+  {
+    nombre: "Servicios",
+    href: "/servicios/agenciamiento-de-aduanas-especializado",
+    children: [
+      { nombre: "Agenciamiento de aduanas especializado", href: "/servicios/agenciamiento-de-aduanas-especializado" },
+      { nombre: "Especializado Asesoría y Consultoría en Comercio Exterior", href: "/servicios/especializado-asesoria-y-consultoria-en-comercio-exterior" },
+      { nombre: "Servicios complementarios a su disposición", href: "/servicios/servicios-complementarios-a-su-disposicion" },
+    ],
+  },
+  { nombre: "Tarifario", href: "/tarifario" },
+  { nombre: "Contáctanos", href: "/contactanos" },
+];
 ---
 
-<header class="w-full fixed">
-    <nav class="p-3 flex flex-row justify-between items-center">
-       <a href="/">
-            <Image src={Logo} alt="Logo Aurum Customs Sac" 
-            class="w-32 h-auto sm:w-36 md:w-44" />
-        </a>
+<header class="fixed top-0 left-0 w-full bg-grisClaro font-Urbanist z-50 shadow-sm">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
 
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 16 16" {...props}>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5" />
-            </svg>
-        </div>
-    </nav>
+    <!-- Logo -->
+    <a href="/">
+      <Image src={Logo} alt="Logo Aurum Customs Sac" class="w-36 md:w-40" />
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex items-center gap-12">
+
+      <ul class="flex gap-10 font-semibold text-16px">
+        {
+          menuItems.map((items) => {
+            const esActivo =
+              items.href === currenPath ||
+              (items.children &&
+                items.children.some((sub) => sub.href == currenPath));
+
+            return (
+              <li class="relative group">
+                <a
+                  href={items.href}
+                  class={`${esActivo ? "text-secundario" : "text-negro hover:text-secundario"} transition-colors`}
+                >
+                  {items.nombre}
+                </a>
+
+                {items.children && (
+                  <ul
+                    class="absolute top-full left-0 mt-4 w-72 bg-white rounded-2xl p-5 border shadow-lg
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    transition-all duration-200"
+                  >
+                    {items.children.map((sub) => (
+                      <li class="hover:font-bold transition-all duration-200">
+                        <a href={sub.href} class="block py-1">
+                          {sub.nombre}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <!-- Tracking -->
+      <a
+        href="/tracking"
+        class="flex items-center gap-2 bg-acento/30 px-6 py-2 rounded-2xl font-semibold hover:bg-secundario hover:text-white transition-all duration-300"
+      >
+        <Icon name="flowbite:tracking-solid" class="size-5" />
+        Tracking
+      </a>
+    </div>
+
+    <!-- Mobile Button -->
+    <button
+      id="menuBtn"
+      class="lg:hidden text-negro"
+      aria-label="Abrir menú"
+    >
+      <Icon name="mdi:menu" class="size-8" />
+    </button>
+
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl p-8 transform translate-x-full transition-transform duration-300 lg:hidden z-50"
+  >
+    <!-- Close -->
+    <div class="flex justify-between items-center mb-10">
+      <Image src={Logo} alt="Logo" class="w-28" />
+      <button id="closeMenu">
+        <Icon name="mdi:close" class="size-7" />
+      </button>
+    </div>
+
+    <ul class="space-y-6 font-semibold">
+      {
+        menuItems.map((items) => (
+          <li>
+            <a href={items.href} class="block text-negro hover:text-secundario transition-colors">
+              {items.nombre}
+            </a>
+
+            {items.children && (
+              <ul class="mt-3 ml-4 space-y-2 text-sm text-gris">
+                {items.children.map((sub) => (
+                  <li>
+                    <a href={sub.href} class="block hover:text-secundario">
+                      {sub.nombre}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+
+      <li class="pt-6">
+        <a
+          href="/tracking"
+          class="block text-center bg-secundario text-white py-3 rounded-2xl"
+        >
+          Tracking
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Overlay -->
+  <div
+    id="overlay"
+    class="fixed inset-0 bg-black/40 opacity-0 invisible transition-all duration-300 lg:hidden"
+  ></div>
 
 </header>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const closeBtn = document.getElementById("closeMenu");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("overlay");
+
+  menuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.remove("translate-x-full");
+    overlay?.classList.remove("opacity-0", "invisible");
+  });
+
+  closeBtn?.addEventListener("click", closeMenu);
+  overlay?.addEventListener("click", closeMenu);
+
+  function closeMenu() {
+    mobileMenu?.classList.add("translate-x-full");
+    overlay?.classList.add("opacity-0", "invisible");
+  }
+</script>

@@ -17,6 +17,7 @@
   "devDependencies": {
     "@iconify-json/cuida": "^1.2.5",
     "@iconify-json/flowbite": "^1.2.7",
-    "@iconify-json/ic": "^1.2.4"
+    "@iconify-json/ic": "^1.2.4",
+    "@iconify-json/mdi": "^1.2.3"
   }
 }
