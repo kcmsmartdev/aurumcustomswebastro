@@ -26,11 +26,11 @@ const menuItems: menu[] = [
             {nombre: "Servicios complementarios a su disposición" , href:"/servicios/servicios-complementarios-a-su-disposicion"},
         ]
      },
-
+     {nombre:"Tarifario", href:"/tarifario", },
      {nombre:"Contáctanos", href:"/contactanos", },
 ]
 ---
-<header class="w-full p-4 font-Urbanist  bg-grisClaro fixed z-50">
+<header class="fixed top-0 left-0 w-full p-4 font-Urbanist  bg-grisClaro  z-1000">
     <nav class="w-full max-w-6xl  mx-auto flex flex-row justify-between items-center">
         <a href="/">
             <Image src={Logo}  alt="Logo Aurm Customs Sac"
@@ -38,7 +38,7 @@ const menuItems: menu[] = [
         </a>
 
         <div class="flex justify-between items-center space-x-16">
-            <ul class="flex justify-between items-center space-x-16 text-secundario font-semibold text-16px">
+            <ul class="flex justify-between items-center space-x-10 text-secundario font-semibold text-16px">
             {
                menuItems.map((items, Index)=>{
 
@@ -48,7 +48,7 @@ const menuItems: menu[] = [
                 return(
                     <li class="relative cursor-pointer group">
                         <a href={items.href}
-                        class={`${esActivo ? "text-secundario"  : "text-negro" }`}>
+                        class={`${esActivo ? "text-secundario"  : "text-negro hover:text-secundario" }`}>
 
                             {items.nombre}
 
@@ -84,7 +84,7 @@ const menuItems: menu[] = [
             }
             </ul>
            
-            <a href="/tracking" class="group flex bg-acento px-7 py-3 rounded-2xl font-semibold  gap-1 hover:bg-secundario hover:text-white hover:rounded-full transition-colors duration-300 ease-in-out"> 
+            <a href="/tracking" class="group flex bg-acento/30 px-7 py-3 rounded-2xl font-semibold  gap-1 hover:bg-secundario hover:text-white hover:rounded-full transition-colors duration-300 ease-in-out"> 
                 <Icon name="flowbite:tracking-solid" class="size-6 group-hover:scale-105 transition-transform duration-300 ease-in-out"/> 
                 
                 Tracking

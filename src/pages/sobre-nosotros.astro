@@ -1,28 +1,202 @@
 ---
 import Image from "astro/components/Image.astro";
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
-import FondoCabecera from "../assets/images/bg-section.png"
-
+import FondoCabecera from "../assets/images/bg-section.png";
+import ImagenSobreNosotros from "../assets/images/imagen_sobre_nosotros.webp";
+import FormularioContacto from "../components/FormularioContacto.astro";
 ---
-<Layout>
-    <div class="relative w-full mt-5 min-h-67.5 overflow-hidden">
 
-    <Image 
-        src={FondoCabecera} 
-        alt="fondo"
-        class="absolute inset-0 w-full h-full object-cover object-center z-0"
+<Layout>
+  <div class="relative w-full mt-5 min-h-67.5 overflow-hidden">
+    <Image
+      src={FondoCabecera}
+      alt="fondo"
+      class="absolute inset-0 w-full h-full object-cover object-center z-0"
     />
 
     <div class="absolute inset-0 bg-negro/40 z-10"></div>
-    
 
-    <div class="relative w-full max-w-6xl p-3 mx-auto flex flex-col justify-center mt-28 z-50">
-
-        <h1 class="text-26px text-blanco font-Urbanist">Sobre nosotros</h1>
-        <div class="flex text-14px text-blanco">
-            <a href="/">Inicio</a> &gt; <span>sobre nosotros</span>
-        </div>
+    <div
+      class="relative w-full max-w-6xl p-3 mx-auto flex flex-col justify-center mt-28 z-50"
+    >
+      <h1 class="text-28px font-bold text-blanco font-Urbanist">
+        Sobre nosotros
+      </h1>
+      <div class="flex text-14px text-blanco">
+        <a href="/">Inicio</a> &gt; <span>sobre nosotros</span>
+      </div>
     </div>
-</div>
+  </div>
 
+  <div
+    class="w-full max-w-6xl mx-auto p-3 mt-32 grid grid-cols-1 lg:grid-cols-2 gap-5 font-Urbanist"
+  >
+    <div class="mt-5 flex flex-col gap-5">
+      <h2 class="text-sm uppercase tracking-widest text-secundario font-bold">
+        SOBRE NOSOTROS
+      </h2>
+      <p class="text-28px lg:text-36px font-extrabold text-negro leading-tight">
+        Más que una agencia, somos tu socio estratégico en comercio exterior
+      </p>
+
+      <p class="text-16px font-medium text-gris leading-relaxed">
+        <strong>Aurum Customs SAC</strong>, es una agencia de aduanas en el
+        Callao especializada en importación, exportación y comercio exterior.
+        Brindamos agenciamiento de aduanas, asesoría estratégica y soluciones
+        complementarias, garantizando cumplimiento SUNAT y operaciones seguras y
+        eficientes.
+      </p>
+
+      <p class="text-16px font-medium text-gris leading-relaxed">
+        Creemos en el trato directo, el conocimiento técnico y la prevención de
+        riesgos. Analizamos cada operación de forma detallada y brindamos
+        servicios complementarios que optimizan tiempos, reducen contingencias
+        ante SUNAT y permiten a nuestros clientes tomar decisiones seguras y
+        eficientes en el comercio internacional.
+      </p>
+    </div>
+
+    <div>
+      <Image
+        src={ImagenSobreNosotros}
+        alt="Imagen sobre nosotros Aurum Customs Sac"
+        sizes="(max-width: 768px) 217px, 300px"
+        class="w-125 h-auto rounded-4xl border-8 border-grisClaro"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <section class="py-24 px-4 font-Urbanist bg-grisClaro/40">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-negro">
+        Nos caracterizamos por
+      </h2>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <article
+          class="p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+        >
+          <Icon
+            name="ic:baseline-balance"
+            class="size-8 text-secundario mb-6"
+          />
+          <p class="font-semibold text-lg text-negro">
+            Cumplimiento normativo y prevención de riesgos
+          </p>
+        </article>
+
+        <article
+          class="p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+        >
+          <Icon
+            name="ic:baseline-device-hub"
+            class="size-8 text-secundario mb-6"
+          />
+          <p class="font-semibold text-lg text-negro">
+            Optimización de tiempos y costos operativos
+          </p>
+        </article>
+
+        <article
+          class="p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+        >
+          <Icon
+            name="ic:baseline-diversity-3"
+            class="size-8 text-secundario mb-6"
+          />
+          <p class="font-semibold text-lg text-negro">
+            Acompañamiento estratégico personalizado
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-grisClaro py-24 px-4 font-Urbanist">
+    <div class="max-w-6xl mx-auto">
+      <!-- Encabezado -->
+      <div class="max-w-2xl">
+        <h2 class="text-sm uppercase tracking-widest text-secundario font-bold">
+          Nuestra filosofía
+        </h2>
+
+        <h3
+          class="mt-4 text-3xl md:text-4xl font-extrabold text-negro leading-tight"
+        >
+          Visión y Misión que impulsan nuestro compromiso
+        </h3>
+      </div>
+
+      <!-- Grid -->
+      <div class="mt-16 grid gap-10 md:gap-16 lg:grid-cols-2">
+        <!-- Visión -->
+        <article
+          class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
+        >
+          <h4 class="text-xl font-bold text-secundario mb-4">Visión</h4>
+
+          <p class="text-gris leading-relaxed">
+            Ser la agencia de aduanas líder y de mayor confianza en el Perú,
+            reconocida por nuestra transparencia y servicio al cliente
+            proactivo. Aspiramos a ser el motor que conecta a las empresas
+            peruanas con el mundo.
+          </p>
+        </article>
+
+        <!-- Misión -->
+        <article
+          class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
+        >
+          <h4 class="text-xl font-bold text-secundario mb-4">Misión</h4>
+
+          <p class="text-gris leading-relaxed">
+            Impulsar el crecimiento de nuestros clientes mediante soluciones
+            aduaneras integrales y personalizadas, optimizando la cadena
+            logística y garantizando máximo cumplimiento normativo y eficiencia.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full mt-28 font-Urbanist">
+    <div class="max-w-6xl mx-auto px-4 mb-16">
+      <!-- Encabezado -->
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-sm uppercase tracking-widest text-secundario font-bold">
+          Contáctanos
+        </h2>
+
+        <h3
+          class="mt-4 text-3xl lg:text-4xl font-extrabold text-negro leading-tight"
+        >
+          Solicita una cotización personalizada
+        </h3>
+      </div>
+
+      <!-- Grid -->
+      <div class="mt-16 grid gap-12 lg:grid-cols-2 items-stretch">
+        <!-- Mapa -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-grisClaro"
+        >
+          <div class="w-full h-full min-h-80 lg:min-h-full">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3902.3022599003352!2d-77.10518600000002!3d-12.022699999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAxJzIxLjciUyA3N8KwMDYnMTguNyJX!5e0!3m2!1ses-419!2spe!4v1769049775517!5m2!1ses-419!2spe"
+              class="w-full h-full"
+              title="Ubicación de Aurum Customs SAC en Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-grisClaro">
+          <FormularioContacto />
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

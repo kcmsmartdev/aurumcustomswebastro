@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FondoCabecera from "../assets/images/bg-section.png";
+import Image from "astro/components/Image.astro";
+import FormularioContacto from "../components/FormularioContacto.astro";
+import { Icon } from 'astro-icon/components';
+
+---
+
+<Layout>
+      <div class="relative w-full mt-5 min-h-67.5 overflow-hidden">
+    <Image
+      src={FondoCabecera}
+      alt="fondo"
+      class="absolute inset-0 w-full h-full object-cover object-center z-0"
+    />
+
+    <div class="absolute inset-0 bg-negro/40 z-10"></div>
+
+    <div
+      class="relative w-full max-w-6xl p-3 mx-auto flex flex-col justify-center mt-28 z-50"
+    >
+      <h1 class="text-28px font-bold text-blanco font-Urbanist">
+        Contáctanos
+      </h1>
+      <div class="flex text-14px text-blanco">
+        <a href="/">Inicio</a> &gt; <span>contáctanos</span>
+      </div>
+    </div>
+  </div>
+
+<section class="w-full py-24 px-4 font-Urbanist">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Header -->
+    <div class="max-w-2xl">
+      <h2 class="text-sm font-bold tracking-widest text-secundario uppercase">
+        Contáctanos
+      </h2>
+
+      <h3 class="mt-4 text-3xl md:text-4xl font-extrabold text-negro leading-tight">
+        Cotiza tu operación con especialistas en comercio exterior
+      </h3>
+
+      <p class="mt-4 text-grisOscuro">
+        Estamos listos para asesorarte y brindarte una solución personalizada.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="mt-16 grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Info contacto -->
+      <div class="space-y-6">
+
+        <article class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div class="p-3 bg-primario/10 rounded-xl">
+            <Icon name="cuida:phone-outline" class="size-6 text-primario" />
+          </div>
+          <div>
+            <p class="text-sm text-grisOscuro">Teléfono</p>
+            <a href="tel:+51999999999" class="font-semibold text-negro hover:text-primario transition-colors">
+              +51 999 999 999
+            </a>
+          </div>
+        </article>
+
+        <article class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div class="p-3 bg-primario/10 rounded-xl">
+            <Icon name="cuida:mail-outline" class="size-6 text-primario" />
+          </div>
+          <div>
+            <p class="text-sm text-grisOscuro">Correo</p>
+            <a href="mailto:contacto@empresa.com" class="font-semibold text-negro hover:text-primario transition-colors">
+              contacto@empresa.com
+            </a>
+          </div>
+        </article>
+
+        <article class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div class="p-3 bg-primario/10 rounded-xl">
+            <Icon name="cuida:map-pin-outline" class="size-6 text-primario" />
+          </div>
+          <div>
+            <p class="text-sm text-grisOscuro">Ubicación</p>
+            <p class="font-semibold text-negro">
+              Callao, Lima - Perú
+            </p>
+          </div>
+        </article>
+        
+        <article>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3902.3022599003352!2d-77.10518600000002!3d-12.022699999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAxJzIxLjciUyA3N8KwMDYnMTguNyJX!5e0!3m2!1ses-419!2spe!4v1769049775517!5m2!1ses-419!2spe" 
+                    width="100%" height="350" title="Ubicación de Aurum Customs Sac en Google Maps" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+        </article>
+
+      </div>
+
+      <!-- Formulario -->
+      <div class="bg-white p-8 md:p-10 rounded-3xl shadow-lg">
+        <FormularioContacto />
+      </div>
+
+    </div>
+
+ 
+
+  </div>
+</section>
+
+    
+</Layout>

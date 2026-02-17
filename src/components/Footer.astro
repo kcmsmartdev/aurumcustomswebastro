@@ -3,89 +3,121 @@ import Logo from "../assets/images/logo-pc.svg"
 import { Image } from "astro:assets";
 import { Icon } from 'astro-icon/components';
 ---
-<footer class="w-full bg-grisClaro mt-32 flex flex-col gap-5 font-Urbanist">
-    <div class="w-full max-w-6xl mx-auto p-3 grid grid-cols-1 lg:grid-cols-4 gap-5 mt-10">
-        <div>
-            <Image src={Logo} alt="Logo Aurum Customs SAC" 
-            class="w-40 h-auto"
-            loading="lazy" />
+<footer class="w-full bg-grisClaro/60 pt-24 pb-10 px-4 font-Urbanist">
 
-            <p class="font-medium text-gris mt-5 text-16px" >
-                En Aurum Customs SAC, ofrecemos soluciones de exportación que optimizan tus operaciones de comercio internacional.
-            </p>
-        </div>
+  <div class="max-w-6xl mx-auto grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
-        <div>
-            <h2 class="text-negro font-bold border-l-2 border-secundario px-3">Agencia</h2>
-            <ul class="font-medium text-gris mt-5 space-y-2 text-16px">
+    <!-- Logo y descripción -->
+    <div>
+      <Image 
+        src={Logo} 
+        alt="Logo Aurum Customs SAC"
+        class="w-40 h-auto"
+        loading="lazy" 
+      />
 
-                <li><a href="/sobre-nosotros" class="hover:text-secundario">Sobre nostros</a></li>
-
-                <li><a href="/tracking" class="hover:text-secundario">Tracking</a></li>
-
-                <li><a href="/contactanos" class="hover:text-secundario">Contáctanos</a></li>
-
-                <li><a href="/libro-de-reclamaciones" class="hover:text-secundario">Libro de Reclamaciones</a></li>
-
-                
-            </ul>
-        </div>
-
-
-        <div>
-            <h2 class="text-negro font-bold border-l-2 border-secundario px-3">Nuestros servicios</h2>
-            <ul class="font-medium text-gris mt-5 text-16px space-y-2">
-
-                <li><a href="/servicios/agenciamiento-de-aduanas-especializado" class="hover:text-secundario">
-                    Agenciamiento de aduanas
-                </a></li>
-
-                <li><a href="/servicios/especializado-asesoria-y-consultoria-en-comercio-exterior" class="hover:text-secundario">
-                    Especializado Asesoría y Consultoría en Comercio Exterior
-                </a></li>
-
-                <li><a href="/servicios/servicios-complementarios-a-su-disposicion" class="hover:text-secundario">Servicios complementarios a su disposición</a></li>
-            </ul>
-        </div>
-
-
-        <div>
-            <h2 class="text-negro font-bold border-l-2 border-secundario px-3">Contacto</h2>
-            <ul class="font-medium text-gris text-16px mt-5 space-y-2">
-
-                <li><a href="/servicios/agenciamiento-de-aduanas-especializado" class="flex gap-1 items-center hover:text-secundario">
-                    <Icon name="cuida:phone-outline" class="size-5" />
-                    +51 999 999 999
-                </a></li>
-
-                 <li><a href="/servicios/agenciamiento-de-aduanas-especializado" class="flex gap-1 items-center hover:text-secundario">
-                    <Icon name="cuida:mail-outline" class="size-5" />
-                    contacto@aurumcustoms.com
-                </a></li>
-
-
-                 <li><a href="/servicios/agenciamiento-de-aduanas-especializado" class="flex gap-1 items-start  hover:text-secundario">
-                    <Icon name="cuida:map-pin-outline" class="size-7" />
-                    Av. Elmer Faucett - Tomas Val Nro. E1 Int. 303e
-                </a></li>
-
-               
-            </ul>
-        </div>
+      <p class="mt-6 text-gris leading-relaxed">
+        En Aurum Customs SAC ofrecemos soluciones de comercio exterior
+        que optimizan tus operaciones internacionales con seguridad y eficiencia.
+      </p>
     </div>
 
-    <div class="w-full max-w-6xl p-3 mx-auto  flex flex-wrap justify-between gap-5">
-        <div class="space-x-5 text-14px font-medium">
-            <a href="/terminos-y-condiciones">Términos y condiciones</a>
-            <a href="/terminos-y-condiciones">Política de cookies</a>
-            <a href="/terminos-y-condiciones">Privacidad de datoss</a>
-        </div>
+    <!-- Agencia -->
+    <div>
+      <h3 class="text-negro font-semibold text-lg">
+        Agencia
+      </h3>
 
-        <div class="flex gap-5">
-            <p>© {new Date().getFullYear()} Aurum Customs SAC. Desarollado por <a href="" class="underline italic font-semibold">KCM smart</a></p> 
-           
-        </div>
+      <ul class="mt-6 space-y-3 text-gris">
+        <li><a href="/sobre-nosotros" class="hover:text-secundario transition-colors">Sobre nosotros</a></li>
+        <li><a href="/tracking" class="hover:text-secundario transition-colors">Tracking</a></li>
+        <li><a href="/contactanos" class="hover:text-secundario transition-colors">Contáctanos</a></li>
+        <li><a href="/libro-de-reclamaciones" class="hover:text-secundario transition-colors">Libro de reclamaciones</a></li>
+      </ul>
     </div>
 
+    <!-- Servicios -->
+    <div>
+      <h3 class="text-negro font-semibold text-lg">
+        Servicios
+      </h3>
+
+      <ul class="mt-6 space-y-3 text-gris">
+        <li><a href="/servicios/agenciamiento-de-aduanas-especializado" class="hover:text-secundario transition-colors">
+          Agenciamiento de aduanas
+        </a></li>
+
+        <li><a href="/servicios/especializado-asesoria-y-consultoria-en-comercio-exterior" class="hover:text-secundario transition-colors">
+          Asesoría y consultoría en comercio exterior
+        </a></li>
+
+        <li><a href="/servicios/servicios-complementarios-a-su-disposicion" class="hover:text-secundario transition-colors">
+          Servicios complementarios
+        </a></li>
+      </ul>
+    </div>
+
+    <!-- Contacto -->
+    <div>
+      <h3 class="text-negro font-semibold text-lg">
+        Contacto
+      </h3>
+
+      <ul class="mt-6 space-y-4 text-gris">
+
+        <li>
+          <a href="tel:+51999999999" class="flex gap-3 items-center hover:text-secundario transition-colors">
+            <Icon name="cuida:phone-outline" class="size-5 text-secundario" />
+            +51 999 999 999
+          </a>
+        </li>
+
+        <li>
+          <a href="mailto:contacto@aurumcustoms.com" class="flex gap-3 items-center hover:text-secundario transition-colors">
+            <Icon name="cuida:mail-outline" class="size-5 text-secundario" />
+            contacto@aurumcustoms.com
+          </a>
+        </li>
+
+        <li>
+          <div class="flex gap-3 items-start">
+            <Icon name="cuida:map-pin-outline" class="size-6 text-secundario mt-1" />
+            <span>
+              Av. Elmer Faucett - Tomas Valle Nro. E1 Int. 303e
+            </span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Divider -->
+  <div class="max-w-6xl mx-auto mt-16 border-t border-grisClaro pt-8 flex flex-col md:flex-row justify-between gap-6 text-sm text-gris">
+
+    <div class="flex flex-wrap gap-6">
+      <a href="/terminos-y-condiciones" class="hover:text-secundario transition-colors">
+        Términos y condiciones
+      </a>
+
+      <a href="/politica-de-cookies" class="hover:text-secundario transition-colors">
+        Política de cookies
+      </a>
+
+      <a href="/politica-de-privacidad" class="hover:text-secundario transition-colors">
+        Política de privacidad
+      </a>
+    </div>
+
+    <div>
+      © {new Date().getFullYear()} Aurum Customs SAC.  
+      Desarrollado por 
+      <a href="#" class="font-semibold hover:text-secundario transition-colors">
+        KCM Smart
+      </a>
+    </div>
+
+  </div>
 
 </footer>

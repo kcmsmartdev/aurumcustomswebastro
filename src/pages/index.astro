@@ -1,148 +1,226 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Icon } from 'astro-icon/components';
-import ImagenHero from "../assets/images/imagen_fondo_hero.webp"
-import ImagenSobreNosotros from "../assets/images/imagen_sobre_nosotros.webp"
+import { Icon } from "astro-icon/components";
+import ImagenHero from "../assets/images/imagen_fondo_hero.webp";
+import ImagenSobreNosotros from "../assets/images/imagen_sobre_nosotros.webp";
 import Image from "astro/components/Image.astro";
-import Servicio1 from "../assets/images/imagen_servicio_1.png"
-import Servicio2 from "../assets/images/imagen_servicio_2.png"
-import Servicio3 from "../assets/images/imagen_servicio_3.png"
+import Servicio1 from "../assets/images/imagen_servicio_1.png";
+import Servicio2 from "../assets/images/imagen_servicio_2.png";
+import Servicio3 from "../assets/images/imagen_servicio_3.png";
 import FormularioContacto from "../components/FormularioContacto.astro";
 ---
+
 <Layout>
-    <main>
-        <div class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
-        
+  <main>
+    <div
+      class="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden"
+    >
+      <!-- Imagen -->
+      <Image
+        src={ImagenHero}
+        alt="Agencia de Aduanas en el Callao para importación y exportación"
+        width={1920}
+        height={1080}
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+
+      <!-- Overlay profesional -->
+      <div
+        class="absolute inset-0 bg-linear-to-r from-negro/80 via-negro/60 to-negro/30"
+      >
+      </div>
+
+      <!-- Contenido -->
+      <div class="relative z-10 w-full max-w-6xl mx-auto px-4 text-blanco">
+        <h1
+          class="font-Urbanist font-extrabold max-w-3xl
+               text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+               leading-tight"
+        >
+          Agencia de Aduanas en el Callao para Importación y Exportación
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-lg font-semibold text-blancoTexto">
+          Especialistas en agenciamiento de aduanas, asesoría y consultoría en
+          comercio exterior. Optimizamos tus operaciones logísticas con
+          cumplimiento normativo y eficiencia.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="#"
+            class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl
+               bg-primario text-negro font-bold
+               hover:bg-secundario hover:text-blanco
+               transition-all duration-300"
+          >
+            Solicitar asesoría gratuita
+
+            <Icon
+              name="ic:baseline-whatsapp"
+              class="size-5 transition-transform group-hover:translate-x-1"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full max-w-6xl mx-auto px-4 mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+    >
+      <!-- Imagen -->
+      <section class="flex justify-center lg:justify-start">
         <Image
-            src={ImagenHero}
-            alt="Agencia de Aduanas en el Callao especializada en comercio exterior"
-            width={1920}
-            height={1080}
-            fetchpriority="high"
-            loading="eager"
-            decoding="async"
-            class="absolute inset-0 w-full h-full object-cover"
+          src={ImagenSobreNosotros}
+          alt="Agencia de aduanas en el Callao especializada en comercio exterior"
+          class="w-full max-w-md h-auto rounded-3xl border-8 border-grisClaro"
+          loading="lazy"
         />
+      </section>
 
-        <div class="absolute inset-0 bg-negro/40"></div>
-        <div class="relative z-10 text-blanco px-3 w-full max-w-6xl  p-3">
-            <h1 class="font-Urbanist font-extrabold mb-10 text-start text-32px leading-9 sm:max-w-xl sm:text-40px md:text-48px  sm:leading-11 md:leading-12  lg:max-w-3xl lg:text-58px lg:leading-16" >
-                Agencia de Aduanas en el Callao especializada en comercio exterior
-            </h1>
-            <p class="w-full  max-w-2xl text-start text-18px font-Urbanist mb-16 text-blancoTexto font-semibold ">
-                Somos una agencia de aduanas ubicada en el Callao, especializada en agenciamiento de aduanas, asesoría y consultoría en comercio exterior.
-            </p>
+      <!-- Texto -->
+      <section class="flex flex-col gap-6 font-Urbanist">
+        <h2 class="text-sm uppercase tracking-widest text-secundario font-bold">
+          Sobre nosotros
+        </h2>
 
-            <a href="#"
-                class="group w-fit px-7 py-5 flex gap-3 items-center rounded-2xl text-18px bg-primario text-negro mt-20 font-bold font-Urbanist 
-                hover:rounded-full hover:bg-secundario hover:text-blanco  transition-transform   duration-300 ease-in-out">
-                Habla con un asesor
-                <Icon name="ic:baseline-whatsapp"
-                class="size-6 transition-transform group-hover:animate-ping" />
+        <h3
+          class="text-3xl lg:text-4xl font-extrabold text-negro leading-tight"
+        >
+          Más que una agencia, somos tu socio estratégico en comercio exterior
+        </h3>
+
+        <p class="text-base font-medium text-gris leading-relaxed">
+          <strong>Aurum Customs SAC</strong> es una agencia de aduanas en el Callao
+          especializada en importación, exportación y comercio exterior. Brindamos
+          agenciamiento de aduanas, asesoría estratégica y soluciones complementarias,
+          garantizando cumplimiento SUNAT y operaciones seguras y eficientes.
+        </p>
+      </section>
+    </div>
+
+    <div class="w-full max-w-6xl mx-auto px-4 mt-28 font-Urbanist">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-sm uppercase tracking-widest text-secundario font-bold">
+          Nuestros servicios
+        </h2>
+
+        <h3
+          class="mt-4 text-3xl lg:text-4xl font-extrabold text-negro leading-tight"
+        >
+          Soluciones Integrales 360° en Agenciamiento de Aduanas
+        </h3>
+      </div>
+
+      <div class="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Servicio 1 -->
+        <article
+          class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 hover:shadow-lg transition-all duration-300"
+        >
+          <div class="overflow-hidden">
+            <Image
+              src={Servicio1}
+              alt="Agenciamiento de aduanas especializado"
+              class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <div class="p-6 flex flex-col     ">
+            <a
+              href="/servicios/agenciamiento-de-aduanas-especializado"
+              class="font-bold text-lg text-negro group-hover:text-secundario transition-colors duration-300"
+            >
+              Agenciamiento de aduanas especializado
             </a>
-        </div>
-        </div>
+          </div>
+        </article>
 
-        <div class="w-full max-w-6xl mx-auto p-3 grid grid-cols-1 lg:grid-cols-2 mt-32">
-            <section>
-                <Image src={ImagenSobreNosotros} alt="Imagen sobre nosotros Aurum Customs Sac" sizes="(max-width: 768px) 217px, 300px"
-                class="w-125 h-auto rounded-4xl border-8 border-grisClaro" loading="lazy" />
-            </section>
+        <!-- Servicio 2 -->
+        <article
+          class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 hover:shadow-lg transition-all duration-300"
+        >
+          <div class="overflow-hidden">
+            <Image
+              src={Servicio2}
+              alt="Asesoría y Consultoría en Comercio Exterior"
+              class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
 
+          <div class="p-6 flex flex-col ">
+            <a
+              href="/servicios/especializado-asesoria-y-consultoria-en-comercio-exterior"
+              class="font-bold text-lg text-negro group-hover:text-secundario transition-colors duration-300"
+            >
+              Asesoría y Consultoría en Comercio Exterior
+            </a>
+          </div>
+        </article>
 
+        <!-- Servicio 3 -->
+        <article
+          class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 hover:shadow-lg transition-all duration-300"
+        >
+          <div class="overflow-hidden">
+            <Image
+              src={Servicio3}
+              alt="Servicios complementarios en comercio exterior"
+              class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
 
-            <section class="flex flex-col gap-2 font-Urbanist mt-10">
-                <h2 class="text-14px text-secundario  border-l-2 px-1  font-bold"> 
-                    SOBRE NOSOTROS
-                </h2>
-                <p class="text-28px lg:text-36px font-extrabold  text-secundario leading-tight">
-                    Más que una agencia, somos tu socio estratégico en comercio exterior
-                </p>
-                <p class="text-16px font-medium text-gris leading-relaxed">
-                    <strong>Aurum Customs SAC</strong>, es una agencia de aduanas en el Callao especializada en importación, exportación y comercio exterior. Brindamos agenciamiento de aduanas, asesoría estratégica y soluciones complementarias, garantizando cumplimiento SUNAT y operaciones seguras y eficientes.
-                </p>
-            </section>
-        </div>
+          <div class="p-6 flex flex-col">
+            <a
+              href="/servicios/servicios-complementarios-a-su-disposicion"
+              class="font-bold text-lg text-negro group-hover:text-secundario transition-colors duration-300"
+            >
+              Servicios complementarios a su disposición
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
 
+    <section class="w-full mt-28 font-Urbanist">
+    <div class="max-w-6xl mx-auto px-4 mb-16">
+      <!-- Encabezado -->
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-sm uppercase tracking-widest text-secundario font-bold">
+          Contáctanos
+        </h2>
 
-        <div class="w-full max-w-6xl mx-auto p-3 mt-32 font-Urbanist flex flex-col items-center-safe gap-5">
-            <h2 class="text-14px  text-secundario border-l-2 px-1  font-bold">NUESTROS SERVICIOS</h2>
-            <p class="text-28px lg:text-36px font-extrabold  text-secundario leading-tight">
-                Soluciones Integrales 360 en Agenciamiento de Aduanas
-            </p>
+        <h3
+          class="mt-4 text-3xl lg:text-4xl font-extrabold text-negro leading-tight"
+        >
+          Solicita una cotización personalizada
+        </h3>
+      </div>
 
-            <div class="flex flex-col lg:flex-row mt-10 gap-5">
-                <article class="w-full max-w-sm group transition-transform duration-300 hover:scale-105 overflow-hidden">
-                    <Image 
-                    src={Servicio1} 
-                    alt="Imagen servicios Agenciamiento de aduanas especializado"
-                    class="transition-transform duration-300 group-hover:scale-105"
-                    />
-                    
-                    <a 
-                    href="/servicios/agenciamiento-de-aduanas-especializado" 
-                    class="font-bold text-negro text-24px transition-colors duration-300 group-hover:text-secundario"
-                    >
-                    Agenciamiento de aduanas especializado 
-                    </a>
-                </article>
-
-
-                <article class="w-full max-w-sm group transition-transform duration-300 hover:scale-105 overflow-hidden">
-                    <Image 
-                    src={Servicio2} 
-                    alt="Imagen servicios Agenciamiento de aduanas especializado"
-                    class="transition-transform duration-300 group-hover:scale-105"
-                    />
-                    
-                    <a 
-                    href="/servicios/especializado-asesoria-y-consultoria-en-comercio-exterior" 
-                    class="font-bold text-negro text-24px transition-colors duration-300 group-hover:text-secundario"
-                    >
-                    Asesoría y Consultoría en Comercio Exterior
-                    </a>
-                </article>
-
-
-                <article class="w-full max-w-sm group transition-transform duration-300 hover:scale-105 overflow-hidden">
-                    <Image 
-                    src={Servicio3} 
-                    alt="Imagen servicios Agenciamiento de aduanas especializado"
-                    class="transition-transform duration-300 group-hover:scale-105"
-                    />
-                    
-                    <a 
-                    href="/servicios/servicios-complementarios-a-su-disposici" 
-                    class="font-bold text-negro text-24px transition-colors duration-300 group-hover:text-secundario"
-                    >
-                    Servicios complementarios a su disposición
-                    </a>
-                </article>
-                
-            </div>
-
+      <!-- Grid -->
+      <div class="mt-16 grid gap-12 lg:grid-cols-2 items-stretch">
+        <!-- Mapa -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-grisClaro"
+        >
+          <div class="w-full h-full min-h-80 lg:min-h-full">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3902.3022599003352!2d-77.10518600000002!3d-12.022699999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAxJzIxLjciUyA3N8KwMDYnMTguNyJX!5e0!3m2!1ses-419!2spe!4v1769049775517!5m2!1ses-419!2spe"
+              class="w-full h-full"
+              title="Ubicación de Aurum Customs SAC en Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
 
-
-        <div class="w-full max-w-6xl mx-auto p-3 font-Urbanist mt-32 flex flex-col items-center">
-            <h2 class="text-14px text-secundario  border-l-2 px-1  font-bold"> 
-                Contacto
-            </h2>
-            <p class="text-28px lg:text-36px font-extrabold  text-secundario leading-tight">
-                Contáctanos para una cotización personalizada
-            </p>
-
-            <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 mt-10">
-                <div class="mt-5">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3902.3022599003352!2d-77.10518600000002!3d-12.022699999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAxJzIxLjciUyA3N8KwMDYnMTguNyJX!5e0!3m2!1ses-419!2spe!4v1769049775517!5m2!1ses-419!2spe" 
-                    width="100%" height="570" title="Ubicación de Aurum Customs Sac en Google Maps" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-
-                <FormularioContacto />
-
-            </div>
+        <!-- Formulario -->
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-grisClaro">
+          <FormularioContacto />
         </div>
-    </main>
+      </div>
+    </div>
+  </section>
+  </main>
 </Layout>
