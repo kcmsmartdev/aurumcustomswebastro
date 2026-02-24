@@ -21,7 +21,7 @@
         nuestra
         <a
           href="/politica-de-cookies"
-          class="text-primario font-semibold underline underline-offset-4 hover:opacity-80 transition"
+          class="text-secundario font-semibold underline underline-offset-4 hover:opacity-80 transition"
         >
           Política de Cookies
         </a>.
@@ -31,9 +31,9 @@
       <div class="flex gap-3 shrink-0">
         <button
           id="btn-rechazar-cookies"
-          class="px-5 py-2 rounded-xl border border-primario
-                 text-primario font-semibold
-                 hover:bg-primario hover:text-negro
+          class="px-5 py-2 rounded-xl border border-secundario
+                 text-secundario font-semibold cursor-pointer
+                 hover:border hover:border-negro hover:text-negro
                  transition-all duration-300"
         >
           Rechazar
@@ -43,7 +43,7 @@
           id="btn-aceptar-cookies"
           class="px-5 py-2 rounded-xl bg-primario
                  text-negro font-semibold
-                 hover:bg-secundario
+                 hover:bg-secundario hover:text-blanco cursor-pointer
                  transition-all duration-300"
         >
           Aceptar
@@ -53,45 +53,37 @@
   </div>
 </div>
 
-<script lang="ts" is:inline>
-  const CLAVE_COOKIES = "cookies_aceptadas";
+<script>
+    const banner = document.getElementById("cookie-banner") as HTMLDivElement | null;
+const btnAceptar = document.getElementById("btn-aceptar-cookies") as HTMLButtonElement | null;
+const btnRechazar = document.getElementById("btn-rechazar-cookies") as HTMLButtonElement | null;
 
-  const banner = document.getElementById(
-    "cookie-banner",
-  ) as HTMLDivElement | null;
-  const btnAceptar = document.getElementById(
-    "btn-aceptar-cookies",
-  ) as HTMLButtonElement | null;
-  const btnRechazar = document.getElementById(
-    "btn-rechazar-cookies",
-  ) as HTMLButtonElement | null;
+const CLAVE_COOKIES = "cookies_aceptadas";
 
-  const mostrarBanner = (): void => {
-    if (!banner) return;
+function mostrarBanner(): void {
+  banner?.classList.remove("hidden");
+}
 
-    banner.classList.remove("hidden");
-    banner.classList.add("animate-fade-in");
-  };
+function ocultarBanner(): void {
+  banner?.classList.add("hidden");
+}
 
-  const ocultarBanner = (): void => {
-    banner?.classList.add("hidden");
-  };
+document.addEventListener("DOMContentLoaded", () => {
+  const estado = localStorage.getItem(CLAVE_COOKIES);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const estado = localStorage.getItem(CLAVE_COOKIES);
+  if (!estado) {
+    mostrarBanner();
+  }
 
-    if (!estado) {
-      mostrarBanner();
-    }
-
-    btnAceptar?.addEventListener("click", () => {
-      localStorage.setItem(CLAVE_COOKIES, "true");
-      ocultarBanner();
-    });
-
-    btnRechazar?.addEventListener("click", () => {
-      localStorage.setItem(CLAVE_COOKIES, "false");
-      ocultarBanner();
-    });
+  btnAceptar?.addEventListener("click", () => {
+    localStorage.setItem(CLAVE_COOKIES, "true");
+    ocultarBanner();
   });
+
+  btnRechazar?.addEventListener("click", () => {
+    localStorage.setItem(CLAVE_COOKIES, "false");
+    ocultarBanner();
+  });
+});
+
 </script>
