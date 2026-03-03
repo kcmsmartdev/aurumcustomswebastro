@@ -42,7 +42,7 @@ export default function LoginForm() {
 
   return (
     <section className="w-full py-24 px-4 font-Urbanist bg-grisClaro/40">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center mt-20">
         
         {/* Lado Informativo */}
         <div>

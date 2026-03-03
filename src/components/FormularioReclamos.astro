@@ -1,0 +1,279 @@
+---
+
+---
+
+<form
+  id="reclamoForm" method="POST" 
+ class="mx-auto flex flex-col gap-6 font-montserrat font-medium text-negro"
+>
+
+  <!-- 1. IDENTIFICACIÓN -->
+  <h3 class="text-xl font-semibold mt-6">
+    1° Identificación de la persona que presenta el reclamo
+  </h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <div class="flex flex-col gap-1">
+      <label>Tipo de documento</label>
+      <select
+        name="tipoDocumento"
+        required
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      >
+        <option value="">Seleccione</option>
+        <option>DNI</option>
+        <option>CE</option>
+        <option>Pasaporte</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label>Número de documento</label>
+      <input
+        type="text"
+        name="numeroDocumento"
+        required
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1 md:col-span-2">
+      <label>Nombres y apellidos</label>
+      <input
+        type="text"
+        name="nombres"
+        required
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1 md:col-span-2">
+      <label>Domicilio</label>
+      <input
+        type="text"
+        name="domicilio"
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label>Departamento</label>
+      <select
+        name="departamento"
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      >
+        <option value="">Seleccione</option>
+        <option value="Amazonas">Amazonas</option>
+        <option value="Áncash">Áncash</option>
+        <option value="Apurímac">Apurímac</option>
+        <option value="Arequipa">Arequipa</option>
+        <option value="Ayacucho">Ayacucho</option>
+        <option value="Cajamarca">Cajamarca</option>
+        <option value="Callao">Callao</option>
+        <option value="Cusco">Cusco</option>
+        <option value="Huancavelica">Huancavelica</option>
+        <option value="Huánuco">Huánuco</option>
+        <option value="Ica">Ica</option>
+        <option value="Junín">Junín</option>
+        <option value="La Libertad">La Libertad</option>
+        <option value="Lambayeque">Lambayeque</option>
+        <option value="Lima">Lima</option>
+        <option value="Loreto">Loreto</option>
+        <option value="Madre de Dios">Madre de Dios</option>
+        <option value="Moquegua">Moquegua</option>
+        <option value="Pasco">Pasco</option>
+        <option value="Piura">Piura</option>
+        <option value="Puno">Puno</option>
+        <option value="San Martín">San Martín</option>
+        <option value="Tacna">Tacna</option>
+        <option value="Tumbes">Tumbes</option>
+        <option value="Ucayali">Ucayali</option>
+
+        <!-- puedes dejar la lista completa -->
+      </select>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label>Provincia</label>
+      <input
+        type="text"
+        name="provincia"
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label>Distrito</label>
+      <input
+        type="text"
+        name="distrito"
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label>Teléfono</label>
+      <input
+        type="tel"
+        name="telefono"
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1 md:col-span-2">
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        required
+        class="w-full px-4 py-3 border border-negroClaro rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-acento"
+      />
+    </div>
+  </div>
+
+  <label class="flex items-center gap-2 mt-2">
+    <input type="checkbox" name="menor" />
+    Soy menor de edad
+  </label>
+
+  <!-- 2. SERVICIO -->
+  <h3 class="text-xl font-semibold mt-6">
+    2° Identificación del bien contratado
+  </h3>
+
+  <div class="flex flex-col gap-1">
+    <label>Descripción del producto o servicio</label>
+    <textarea
+      name="descripcion"
+      rows="3"
+      maxlength="700"
+      class="w-full px-4 py-3 border border-negroClaro rounded-xl resize-none
+             focus:outline-none focus:ring-2 focus:ring-acento"
+    ></textarea>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Monto reclamado (S/.)</label>
+    <input
+      type="number"
+      step="0.01"
+      name="monto"
+      class="w-full px-4 py-3 border border-negroClaro rounded-xl
+             focus:outline-none focus:ring-2 focus:ring-acento"
+    />
+  </div>
+
+  <!-- 3. DETALLE -->
+  <h3 class="text-xl font-semibold mt-6">
+    3° Detalle de la reclamación
+  </h3>
+
+  <div class="flex flex-col gap-1">
+    <label>Tipo</label>
+    <select
+      name="tipo"
+      required
+      class="w-full px-4 py-3 border border-negroClaro rounded-xl
+             focus:outline-none focus:ring-2 focus:ring-acento"
+    >
+      <option value="">Seleccione</option>
+      <option value="Reclamo">Reclamo</option>
+      <option value="Queja">Queja</option>
+    </select>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Detalle</label>
+    <textarea
+      name="detalle"
+      rows="4"
+      maxlength="700"
+      class="w-full px-4 py-3 border border-negroClaro rounded-xl resize-none
+             focus:outline-none focus:ring-2 focus:ring-acento"
+    ></textarea>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Pedido</label>
+    <textarea
+      name="pedido"
+      rows="4"
+      maxlength="700"
+      class="w-full px-4 py-3 border border-negroClaro rounded-xl resize-none
+             focus:outline-none focus:ring-2 focus:ring-acento"
+    ></textarea>
+  </div>
+
+  <label class="flex items-center gap-2 text-sm mt-2">
+              <input type="checkbox" required />
+              He leído y acepto la <a href="/politica-de-privacidad-de-datos" class="text-negro font-bold hover:text-primario">política de protección de datos personales</a>
+            </label>
+
+  <!-- BOTÓN -->
+  <button
+    id="btnReclamo"
+    type="submit" 
+    class="bg-secundario text-blanco font-bold py-4 w-fit px-12 rounded-2xl hover:bg-acento hover:text-negro cursor-pointer transition-colors duration-300 ease-out"
+  >
+    Enviar reclamo
+  </button>
+
+</form>
+
+<script is:inline>
+  const form = document.getElementById("reclamoForm");
+  const button = document.getElementById("btnReclamo");
+
+  if (!form || !button) {
+    console.error("Formulario o botón no encontrado");
+  } else {
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); 
+
+      button.textContent = "Enviando...";
+      button.disabled = true;
+      button.className = "bg-gray-400 text-white py-4 rounded-2xl";
+
+      try {
+        const res = await fetch("/enviar-reclamo.php", {
+          method: "POST",
+          body: new FormData(form),
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          button.textContent = "Reclamo enviado ✓";
+          button.className = "bg-green-600 text-white py-4 rounded-2xl";
+          form.reset();
+        } else {
+          throw new Error("Error en PHP");
+        }
+
+      } catch (error) {
+        console.error(error);
+        button.textContent = "Error al enviar ✕";
+        button.className = "bg-red-600 text-white py-4 rounded-2xl";
+      }
+
+      setTimeout(() => {
+        button.textContent = "Enviar reclamo";
+        button.disabled = false;
+        button.className = "bg-primario text-negro py-4 rounded-2xl";
+      }, 3500);
+    });
+
+  }
+</script>
+
