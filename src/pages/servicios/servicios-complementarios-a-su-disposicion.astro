@@ -66,45 +66,86 @@ import FormularioContacto from "../../components/FormularioContacto.astro";
     </div>
 
     <!-- Grid de servicios -->
-    <div
-      class="max-w-6xl mx-auto mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-2"
-    >
-      <article
-        class="p-6 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-      >
-        <p class="font-semibold text-negro">Transporte Local</p>
-        <p class="text-sm text-gris mt-2">
-          Distribución y recojo de carga desde y hacia el punto de llegada.
-        </p>
-      </article>
+      <div class="max-w-6xl mx-auto mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
 
-      <article
-        class="p-6 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-      >
-        <p class="font-semibold text-negro">Transporte Internacional</p>
-        <p class="text-sm text-gris mt-2">
-          Traslado de mercancías desde el país de origen hasta el destino final.
-        </p>
-      </article>
+  <article class="group p-7 bg-white rounded-3xl
+                  border border-acento]
+                  shadow-sm
+                  transition-all duration-300
+                  hover:shadow-xl
+                  hover:-translate-y-1
+                  hover:border-primario">
 
-      <article
-        class="p-6 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-      >
-        <p class="font-semibold text-negro">Almacenamiento</p>
-        <p class="text-sm text-gris mt-2">
-          Gestión de almacenaje simple y depósito aduanero.
-        </p>
-      </article>
+    <div class="h-1 w-10 bg-primario rounded-full mb-4
+                transition-all duration-300 group-hover:w-16"></div>
 
-      <article
-        class="p-6 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-      >
-        <p class="font-semibold text-negro">Seguro de Carga</p>
-        <p class="text-sm text-gris mt-2">
-          Protección integral de tu mercancía contra todo riesgo.
-        </p>
-      </article>
-    </div>
+    <p class="font-semibold text-negro
+              transition-colors duration-300
+              group-hover:text-secundario">
+      Transporte Local
+    </p>
+
+  </article>
+
+  <article class="group p-7 bg-white rounded-3xl
+                  border border-acento]
+                  shadow-sm
+                  transition-all duration-300
+                  hover:shadow-xl
+                  hover:-translate-y-1
+                  hover:border-primario">
+
+    <div class="h-1 w-10 bg-primario rounded-full mb-4
+                transition-all duration-300 group-hover:w-16"></div>
+
+    <p class="font-semibold text-negro
+              transition-colors duration-300
+              group-hover:text-secundario">
+      Transporte Internacional
+    </p>
+
+  </article>
+<article class="group p-7 bg-white rounded-3xl
+                  border border-acento]
+                  shadow-sm
+                  transition-all duration-300
+                  hover:shadow-xl
+                  hover:-translate-y-1
+                  hover:border-primario">
+
+    <div class="h-1 w-10 bg-primario rounded-full mb-4
+                transition-all duration-300 group-hover:w-16"></div>
+
+    <p class="font-semibold text-negro
+              transition-colors duration-300
+              group-hover:text-secundario">
+      Almacenamiento
+    </p>
+
+  </article>
+
+
+  <article class="group p-7 bg-white rounded-3xl
+                  border border-acento]
+                  shadow-sm
+                  transition-all duration-300
+                  hover:shadow-xl
+                  hover:-translate-y-1
+                  hover:border-primario">
+
+    <div class="h-1 w-10 bg-primario rounded-full mb-4
+                transition-all duration-300 group-hover:w-16"></div>
+
+    <p class="font-semibold text-negro
+              transition-colors duration-300
+              group-hover:text-secundario">
+     
+Seguro de Carga
+    </p>
+
+  </article>
+
+  </div>
   </section>
 
   <section class="w-full mt-28 font-Urbanist">
@@ -139,7 +180,7 @@ import FormularioContacto from "../../components/FormularioContacto.astro";
         </div>
 
         <!-- Formulario -->
-        <div class="bg-white p-8 rounded-3xl shadow-sm border border-grisClaro">
+        <div class="p-8">
           <FormularioContacto />
         </div>
       </div>
