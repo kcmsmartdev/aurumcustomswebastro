@@ -1,7 +1,233 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+import FondoCabecera from "../assets/images/bg-section.png";
 ---
 
 <Layout>
-    
+      <div class="relative w-full mt-5 min-h-67.5 overflow-hidden">
+        <Image
+        src={FondoCabecera}
+        alt="fondo"
+        class="absolute inset-0 w-full h-full object-cover object-center z-0"
+        />
+
+        <div class="absolute inset-0 bg-negro/40 z-10"></div>
+
+        <div
+        class="relative w-full max-w-6xl p-3 mx-auto flex flex-col justify-center mt-28 z-50"
+        >
+        <h1 class="text-28px font-bold text-blanco font-Urbanist">
+           Tarifas
+        </h1>
+        <div class="flex text-14px text-blanco">
+            <a href="/">Inicio</a> &gt; <span>tarifas</span>
+        </div>
+        </div>
+    </div>
+
+
+ <section class="w-full py-24 px-4 font-Urbanist bg-white">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- ======================== -->
+    <!-- AGENCIA DE ADUANA -->
+    <!-- ======================== -->
+
+    <h2 class="text-sm uppercase tracking-[0.25em] text-secundario font-bold mb-10">
+      Agencia de Aduana
+    </h2>
+
+
+    <!-- TARIFA DE SERVICIO -->
+    <div class="mb-14 rounded-3xl overflow-hidden border border-grisClaro bg-white">
+
+      <!-- HEADER -->
+      <div class="flex items-center justify-between px-8 py-5 bg-secundario/10">
+        <p class="text-negro font-bold uppercase tracking-widest text-sm">
+          Tarifa de Servicio
+        </p>
+      </div>
+
+      <!-- SUBHEADER -->
+      <div class="grid grid-cols-[1fr_180px] px-8 py-3 border-b border-grisClaro bg-grisClaro/20">
+        <span class="text-xs font-bold uppercase tracking-widest text-gris">
+          Concepto
+        </span>
+
+        <span class="text-xs font-bold uppercase tracking-widest text-gris text-right">
+          Importe
+        </span>
+      </div>
+
+      <!-- FILAS -->
+      <div class="divide-y divide-grisClaro">
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">
+            Comisión percentual importaciones / exportaciones
+          </span>
+
+          <span class="font-semibold text-secundario text-right">
+            0.50% del CIF
+          </span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">
+            Comisión mínima
+          </span>
+
+          <span class="font-semibold text-secundario text-right">
+            120.00 USD
+          </span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">
+            Gastos de despacho
+          </span>
+
+          <span class="font-semibold text-secundario text-right">
+            30.00 USD
+          </span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">
+            Transmisión electrónica
+          </span>
+
+          <span class="font-semibold text-secundario text-right">
+            30.00 USD
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- TIEMPO PROMEDIO -->
+    <div class="mb-16 rounded-3xl overflow-hidden border border-grisClaro bg-white">
+
+      <div class="flex items-center justify-between px-8 py-5 bg-secundario/10">
+        <p class="text-negro font-bold uppercase tracking-widest text-sm">
+          Tiempo Promedio de Servicio
+        </p>
+      </div>
+
+      <div class="grid grid-cols-[1fr_180px] px-8 py-3 border-b border-grisClaro bg-grisClaro/20">
+        <span class="text-xs font-bold uppercase tracking-widest text-gris">
+          Descripción
+        </span>
+
+        <span class="text-xs font-bold uppercase tracking-widest text-gris text-right">
+          Tiempo
+        </span>
+      </div>
+
+      <div class="divide-y divide-grisClaro">
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho canal verde</span>
+          <span class="font-semibold text-secundario text-right">01 día</span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho canal naranja</span>
+          <span class="font-semibold text-secundario text-right">02 días</span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho canal rojo</span>
+          <span class="font-semibold text-secundario text-right">03 días</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ======================== -->
+    <!-- AGENCIA DE CARGA -->
+    <!-- ======================== -->
+
+    <h2 class="text-sm uppercase tracking-[0.25em] text-secundario font-bold mb-10">
+      Agencia de Carga
+    </h2>
+
+
+    <!-- TARIFA -->
+    <div class="mb-12 rounded-3xl border border-grisClaro bg-white overflow-hidden">
+
+      <div class="flex items-center justify-between px-8 py-5 bg-secundario/10">
+        <p class="text-negro font-bold uppercase tracking-widest text-sm">
+          Tarifa de Servicio
+        </p>
+      </div>
+
+      <div class="px-8 py-6">
+        <p class="text-gris font-medium">
+          Las tarifas de carga se encuentran publicadas en el MISLO.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- TIEMPOS -->
+    <div class="rounded-3xl border border-grisClaro bg-white overflow-hidden">
+
+      <div class="flex items-center justify-between px-8 py-5 bg-secundario/10">
+        <p class="text-negro font-bold uppercase tracking-widest text-sm">
+          Tiempo Promedio del Servicio
+        </p>
+      </div>
+
+      <div class="divide-y divide-grisClaro">
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho Exportación Aérea</span>
+          <span class="font-semibold text-secundario text-right">07 días</span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho Exportación Marítima</span>
+          <span class="font-semibold text-secundario text-right">15 días</span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho Importación Aérea</span>
+          <span class="font-semibold text-secundario text-right">15 días</span>
+        </div>
+
+        <div class="grid grid-cols-[1fr_180px] px-8 py-5 hover:bg-grisClaro/20 transition">
+          <span class="text-negro font-medium">Despacho Importación Marítima</span>
+          <span class="font-semibold text-secundario text-right">30 días</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- NOTA -->
+    <p class="text-sm text-gris italic mt-10 mb-12">
+      * Sujeto a cambios de las líneas aéreas y navieras
+    </p>
+
+
+    <!-- CTA -->
+    <a
+      href="/contacto"
+      class="inline-flex items-center gap-3 bg-negro text-blanco font-semibold px-8 py-4 rounded-full hover:bg-secundario hover:text-negro transition"
+    >
+      Consultar tarifas
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+
+  </div>
+</section>
+ 
 </Layout>
