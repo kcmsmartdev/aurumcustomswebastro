@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import LogoutButton from "./auth/LogoutButton";
+import ShipmentForm from "./ShipmentForm";
 
 const supabase = createClient(
   import.meta.env.PUBLIC_SUPABASE_URL,
@@ -13,60 +14,86 @@ export default function TrackingDashboard() {
   const [shipment, setShipment] = useState(null);
   const [rawShipment, setRawShipment] = useState(null);
   const [company, setCompany] = useState(null);
+  const [role, setRole] = useState(null);
+  const [localData, setLocalData] = useState(null);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
+  const [showForm, setShowForm] = useState(false);
 
-      const { data } = await supabase
-        .from("profiles")
-        .select("company")
-        .eq("id", user.id)
-        .single();
 
-      if (data) setCompany(data.company);
-    };
+ useEffect(() => {
+  const fetchProfile = async () => {
+    const { data: { session } } = await supabase.auth.getSession()
 
-    fetchProfile();
-  }, []);
+    if (!session) {
+      window.location.href = '/login'
+      return
+    }
+
+    const { data } = await supabase
+      .from("profiles")
+      .select("company, role")
+      .eq("id", session.user.id)
+      .single()
+
+    if (data){
+      setCompany(data.company)
+      setRole(data.role)
+    } 
+  }
+
+  fetchProfile()
+}, [])
 
   const handleSearch = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setShipment(null);
-    setRawShipment(null);
+  e.preventDefault();
+  setLoading(true);
+  setShipment(null);
+  setRawShipment(null);
+  setLocalData(null);
 
-    try {
-      const res  = await fetch(`https://api.aurumlogistics.com.pe/api/tracking/awb/${awb.replace('-', '')}`);
-      const json = await res.json();
+  const awbClean = awb.replace('-', '');
 
-      if (!json.success) throw new Error(json.error || 'Envío no encontrado');
+  try {
+    // Las dos consultas en paralelo
+    const [apiRes, supabaseRes] = await Promise.all([
+      fetch(`https://api.aurumlogistics.com.pe/api/tracking/awb/${awbClean}`),
+      supabase.from('datos_awb').select('*').eq('nro_guia', awb).single()
+    ]);
 
+    // Resultado Supabase
+    if (supabaseRes.data) setLocalData(supabaseRes.data);
+
+    // Resultado API KLM
+    const json = await apiRes.json();
+    if (json.success) {
       const t = json.data.Shipments?.[0];
-      if (!t) throw new Error('No se encontraron datos para este AWB');
-
-      const { Shipment, ShipmentCharacteristics, Companies } = t;
-
-      setRawShipment(t);
-
-      setShipment({
-        exporter:  Companies?.Shipper?.Name   || '—',
-        importer:  Companies?.Consignee?.Name || '—',
-        quantity:  `${ShipmentCharacteristics?.TotalPieceCount || '—'} pza`,
-        weight:    ShipmentCharacteristics?.TotalGrossWeight
-                     ? `${ShipmentCharacteristics.TotalGrossWeight.Value} ${ShipmentCharacteristics.TotalGrossWeight.Unit}`
-                     : '—',
-        origin:    Shipment.OriginDestination?.DepartureLocation || '—',
-        destination: Shipment.OriginDestination?.ArrivalLocation || '—',
-      });
-
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setLoading(false);
+      if (t) {
+        const { Shipment, ShipmentCharacteristics, Companies } = t;
+        setRawShipment(t);
+        setShipment({
+          exporter:    Companies?.Shipper?.Name   || '—',
+          importer:    Companies?.Consignee?.Name || '—',
+          quantity:    `${ShipmentCharacteristics?.TotalPieceCount || '—'} pza`,
+          weight:      ShipmentCharacteristics?.TotalGrossWeight
+                         ? `${ShipmentCharacteristics.TotalGrossWeight.Value} ${ShipmentCharacteristics.TotalGrossWeight.Unit}`
+                         : '—',
+          origin:      Shipment.OriginDestination?.DepartureLocation || '—',
+          destination: Shipment.OriginDestination?.ArrivalLocation   || '—',
+        });
+      }
     }
-  };
+
+    // Si no hay ninguno de los dos
+    if (!supabaseRes.data && !json.success) {
+      alert('No se encontraron datos para este AWB');
+    }
+
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section className="w-full py-24 px-4 font-Urbanist bg-grisClaro/40 min-h-screen">
@@ -89,9 +116,15 @@ export default function TrackingDashboard() {
               </span>
             </p>
           </div>
-          <div className="self-start md:self-auto">
+          <div className="self-start md:self-auto flex flex-col lg:flex-row gap-4">
+            {role === 'admin' && ( 
+              <button onClick={() => setShowForm(true)} className="bg-negro text-white px-6 py-3 rounded-xl font-semibold hover:bg-negro/90 transition">
+                Generar registro
+              </button>
+            )}
             <LogoutButton />
           </div>
+          
         </div>
 
         {/* BUSCADOR */}
@@ -116,27 +149,45 @@ export default function TrackingDashboard() {
         </div>
 
         {/* RESULTADO */}
-        {shipment && (
-          <div className="grid lg:grid-cols-2 gap-10 mb-10">
-            <div className="bg-white p-8 rounded-3xl shadow-md border border-gray-100">
-              <h3 className="text-xl font-bold text-negro mb-6">
-                Información del Envío
-              </h3>
-              <div className="grid grid-cols-2 gap-6 text-sm">
-                <Info label="Exportador"      value={shipment.exporter} />
-                <Info label="Importador"      value={shipment.importer} />
-                <Info label="Cantidad"        value={shipment.quantity} />
-                <Info label="Peso"            value={shipment.weight} />
-                <Info label="País de Origen"  value={shipment.origin} />
-                <Info label="País de Destino" value={shipment.destination} />
-              </div>
-            </div>
+        {(shipment || localData) && (
+  <div className="grid lg:grid-cols-2 gap-10 mb-10">
 
-            {rawShipment && <FlightTimeline shipmentData={rawShipment} />}
+    {/* Datos de Supabase */}
+    <div className="bg-white p-8 rounded-3xl shadow-md border border-gray-100">
+      <h3 className="text-xl font-bold text-negro mb-6">Información del Envío</h3>
+      <div className="grid grid-cols-2 gap-6 text-sm">
+        <Info label="Nro Guia"           value={localData?.nro_guia    || shipment?.origin} />
+        <Info label="Cliente"            value={localData?.cliente     || '—'} />
+        <Info label="Descripción"        value={localData?.descripcion || '—'} />
+        <Info label="Vía"                value={localData?.via         || '—'} />
+        <Info label="Origen"             value={localData?.origen      || shipment?.origin} />
+        <Info label="Destino"            value={localData?.destino     || shipment?.destination} />
+        <Info label="ETD / Salida"       value={localData?.etd ? new Date(localData.etd).toLocaleString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—'} />
+        <Info label="ETA / Llegada"      value={localData?.eta ? new Date(localData.eta).toLocaleString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—'} />
+        <Info label="Almacén llegada"    value={localData?.almacen_llegada || '—'} />
+        <Info label="Categoría"          value={localData?.categoria   || '—'} />
+        <Info label="DAM"                value={localData?.dam         || '—'} />
+        <Info label="Cantidad"           value={localData?.cantidad    ? `${localData.cantidad} pza` : shipment?.quantity} />
+        <Info label="Peso"               value={localData?.peso        ? `${localData.peso} KG`     : shipment?.weight} />
+        <Info label="Consignatario"      value={localData?.consignatario  || '—'} />
+        <Info label="Canal de control"   value={localData?.canal_control  || '—'} />
+        <Info label="Estado"             value={localData?.estado         || '—'} />
+        {localData?.observaciones && (
+          <div className="col-span-2">
+            <Info label="Observaciones" value={localData.observaciones} />
           </div>
         )}
+      </div>
+    </div>
+
+    {/* Timeline API KLM */}
+    {rawShipment && <FlightTimeline shipmentData={rawShipment} />}
+
+  </div>
+)}
 
       </div>
+      {showForm && <ShipmentForm onClose={() => setShowForm(false)} />}
     </section>
   );
 }
