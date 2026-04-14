@@ -43,7 +43,7 @@ export default function ShipmentForm({ onClose }) {
     }]);
 
     if (error) {
-      alert("Error al guardar: " + error.message);
+      alert("Error al guardar");
     } else {
       alert("Registro guardado correctamente");
       onClose?.();
