@@ -36,7 +36,7 @@ export default function ShipmentForm({ onClose }) {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.from("datos_awb").insert([{
+    const { error } = await supabase.from("datos_awb222").insert([{
       ...form,
       cantidad: form.cantidad ? parseInt(form.cantidad) : null,
       peso: form.peso ? parseFloat(form.peso) : null,

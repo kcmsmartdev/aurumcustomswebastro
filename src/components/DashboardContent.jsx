@@ -31,13 +31,13 @@ export default function TrackingDashboard() {
 
     const { data } = await supabase
       .from("profiles")
-      .select("company")
+      .select("company, role")
       .eq("id", session.user.id)
       .single()
 
     if (data){
       setCompany(data.company)
-      //setRole(data.role)
+      setRole(data.role)
     } 
   }
 
@@ -117,7 +117,7 @@ export default function TrackingDashboard() {
             </p>
           </div>
           <div className="self-start md:self-auto flex flex-col lg:flex-row gap-4">
-            {role === 'admin2' && ( 
+            {role === 'admin' && ( 
               <button onClick={() => setShowForm(true)} className="bg-negro text-white px-6 py-3 rounded-xl font-semibold hover:bg-negro/90 transition">
                 Generar registro
               </button>
@@ -150,41 +150,24 @@ export default function TrackingDashboard() {
 
         {/* RESULTADO */}
         {(shipment || localData) && (
-  <div className="grid lg:grid-cols-2 gap-10 mb-10">
+          <div className="grid lg:grid-cols-2 gap-10 mb-10">
+            <div className="bg-white p-8 rounded-3xl shadow-md border border-gray-100">
+              <h3 className="text-xl font-bold text-negro mb-6">
+                Información del Envío
+              </h3>
+              <div className="grid grid-cols-2 gap-6 text-sm">
+                <Info label="Exportador"      value={shipment.exporter} />
+                <Info label="Importador"      value={shipment.importer} />
+                <Info label="Cantidad"        value={shipment.quantity} />
+                <Info label="Peso"            value={shipment.weight} />
+                <Info label="País de Origen"  value={shipment.origin} />
+                <Info label="País de Destino" value={shipment.destination} />
+              </div>
+            </div>
 
-    {/* Datos de Supabase */}
-    <div className="bg-white p-8 rounded-3xl shadow-md border border-gray-100">
-      <h3 className="text-xl font-bold text-negro mb-6">Información del Envío</h3>
-      <div className="grid grid-cols-2 gap-6 text-sm">
-        <Info label="Nro Guia"           value={localData?.nro_guia    || shipment?.origin} />
-        <Info label="Cliente"            value={localData?.cliente     || '—'} />
-        <Info label="Descripción"        value={localData?.descripcion || '—'} />
-        <Info label="Vía"                value={localData?.via         || '—'} />
-        <Info label="Origen"             value={localData?.origen      || shipment?.origin} />
-        <Info label="Destino"            value={localData?.destino     || shipment?.destination} />
-        <Info label="ETD / Salida"       value={localData?.etd ? new Date(localData.etd).toLocaleString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—'} />
-        <Info label="ETA / Llegada"      value={localData?.eta ? new Date(localData.eta).toLocaleString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—'} />
-        <Info label="Almacén llegada"    value={localData?.almacen_llegada || '—'} />
-        <Info label="Categoría"          value={localData?.categoria   || '—'} />
-        <Info label="DAM"                value={localData?.dam         || '—'} />
-        <Info label="Cantidad"           value={localData?.cantidad    ? `${localData.cantidad} pza` : shipment?.quantity} />
-        <Info label="Peso"               value={localData?.peso        ? `${localData.peso} KG`     : shipment?.weight} />
-        <Info label="Consignatario"      value={localData?.consignatario  || '—'} />
-        <Info label="Canal de control"   value={localData?.canal_control  || '—'} />
-        <Info label="Estado"             value={localData?.estado         || '—'} />
-        {localData?.observaciones && (
-          <div className="col-span-2">
-            <Info label="Observaciones" value={localData.observaciones} />
+            {rawShipment && <FlightTimeline shipmentData={rawShipment} />}
           </div>
         )}
-      </div>
-    </div>
-
-    {/* Timeline API KLM */}
-    {rawShipment && <FlightTimeline shipmentData={rawShipment} />}
-
-  </div>
-)}
 
       </div>
       {showForm && <ShipmentForm onClose={() => setShowForm(false)} />}
