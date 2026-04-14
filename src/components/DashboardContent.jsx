@@ -31,13 +31,13 @@ export default function TrackingDashboard() {
 
     const { data } = await supabase
       .from("profiles")
-      .select("company, role")
+      .select("company")
       .eq("id", session.user.id)
       .single()
 
     if (data){
       setCompany(data.company)
-      setRole(data.role)
+      //setRole(data.role)
     } 
   }
 
@@ -117,7 +117,7 @@ export default function TrackingDashboard() {
             </p>
           </div>
           <div className="self-start md:self-auto flex flex-col lg:flex-row gap-4">
-            {role === 'admin' && ( 
+            {role === 'admin2' && ( 
               <button onClick={() => setShowForm(true)} className="bg-negro text-white px-6 py-3 rounded-xl font-semibold hover:bg-negro/90 transition">
                 Generar registro
               </button>
